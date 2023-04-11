@@ -44,7 +44,7 @@ if (process.env.GPT_MODE === "CHAT"){
 
 }
 
-app.get('/gpt/:text', async (req, res) => {
+app.get('/img/:text', async (req, res) => {
     
     //The agent should recieve Username:Message in the text to identify conversations with different users in his history. 
     
