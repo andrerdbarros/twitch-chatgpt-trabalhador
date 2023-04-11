@@ -23,7 +23,6 @@ app.use(express.json({extended: true, limit: '1mb'}))
 app.all('/', (req, res) => {
     console.log("Just got a request!")
     res.send('Yo!')
-    console.log("DA UMA OLHADA NESSE TESTE: " + req.params.text)
 })
 
 if (process.env.GPT_MODE === "CHAT"){
@@ -50,6 +49,9 @@ app.get('/gpt/:text', async (req, res) => {
     //The agent should recieve Username:Message in the text to identify conversations with different users in his history. 
     
     const text = req.params.text
+    
+    console.log("TEXT = " + text)
+    
     const { Configuration, OpenAIApi } = require("openai");
 
     const configuration = new Configuration({
