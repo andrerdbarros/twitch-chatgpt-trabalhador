@@ -8,6 +8,8 @@ const GPT_MODE = process.env.GPT_MODE
 
 let file_context = "You are a helpful Twitch Chatbot."
 
+console.log("DA UMA OLHADA NESSE TESTE: " + req.params.text)
+
 const messages = [
   {role: "system", content: "You are a helpful Twitch Chatbot."}
 ];
