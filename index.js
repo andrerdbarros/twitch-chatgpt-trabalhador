@@ -8,7 +8,7 @@ const GPT_MODE = process.env.GPT_MODE
 
 let file_context = "You are a helpful Twitch Chatbot."
 
-console.log("DA UMA OLHADA NESSE TESTE: " + req.params.text)
+
 
 const messages = [
   {role: "system", content: "You are a helpful Twitch Chatbot."}
@@ -23,6 +23,7 @@ app.use(express.json({extended: true, limit: '1mb'}))
 app.all('/', (req, res) => {
     console.log("Just got a request!")
     res.send('Yo!')
+    console.log("DA UMA OLHADA NESSE TESTE: " + req.params.text)
 })
 
 if (process.env.GPT_MODE === "CHAT"){
