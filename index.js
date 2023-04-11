@@ -25,25 +25,6 @@ app.all('/', (req, res) => {
     res.send('Yo!')
 })
 
-if (process.env.GPT_MODE === "CHAT"){
-
-  fs.readFile("./file_context.txt", 'utf8', function(err, data) {
-    if (err) throw err;
-    console.log("Reading context file and adding it as system level message for the agent.")
-    messages[0].content = data;
-  });
-
-} else {
-
-  fs.readFile("./file_context.txt", 'utf8', function(err, data) {
-    if (err) throw err;
-    console.log("Reading context file and adding it in front of user prompts:")
-    file_context = data;
-    console.log(file_context);
-  });
-
-}
-
 app.get('/gpt/:text', async (req, res) => {
     
     //The agent should recieve Username:Message in the text to identify conversations with different users in his history. 
@@ -59,6 +40,12 @@ app.get('/gpt/:text', async (req, res) => {
     
     if (GPT_MODE === "CHAT"){
       //CHAT MODE EXECUTION
+	   
+	  fs.readFile("./file_context.txt", 'utf8', function(err, data) {
+		if (err) throw err;
+		console.log("Reading context file and adding it as system level message for the agent.")
+		messages[0].content = data;
+	  });
 
       //Add user message to  messages
       messages.push({role: "user", content: text})
@@ -103,6 +90,14 @@ app.get('/gpt/:text', async (req, res) => {
 
     } else if (GPT_MODE === "PROMPT"){
       //PROMPT MODE EXECUTION
+	  
+	  fs.readFile("./file_context.txt", 'utf8', function(err, data) {
+		if (err) throw err;
+		console.log("Reading context file and adding it in front of user prompts:")
+		file_context = data;
+		console.log(file_context);
+	  });
+	  
       const prompt = file_context + "\n\nQ:" + text + "\nA:";
       console.log("User Input: " + text)
 
