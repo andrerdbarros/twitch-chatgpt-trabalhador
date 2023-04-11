@@ -164,7 +164,7 @@ app.get('/image/:text', async (req, res) => {
       console.log("User Input: " + text)
 
       const response = await openai.createImage({
-        prompt: prompt,
+        prompt: text,
 		n: 1,
 		size: "1024x1024",
       });
