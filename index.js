@@ -101,7 +101,7 @@ app.get('/gpt/:text', async (req, res) => {
         res.send("Something went wrong. Try again later!")
       }
 
-    } else {
+    } else if (GPT_MODE === "PROMPT"){
       //PROMPT MODE EXECUTION
       const prompt = file_context + "\n\nQ:" + text + "\nA:";
       console.log("User Input: " + text)
